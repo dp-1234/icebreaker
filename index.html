@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Icebreaker cards</title>
+	<meta name="description" content="Icebreaker cards">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style>
+		body {
+			background-color: rgba(177, 224, 191, 0.3);
+		}
+		.vertical-center {
+		  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+		  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+		  display: flex;
+		  align-items: center;
+		}
+		.unselectable {
+			-webkit-user-select: none;
+			-webkit-touch-callout: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		.card {
+			height: 200px;
+			width: 200px;
+		}
+		.btn-container {
+			position: absolute;
+			top: -5em;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+	</style>
+</head>
+<body>
+</head>
+<body>
+	<div class="flex-column justify-content-center vertical-center ">
+		<div class="card">
+		<div class="btn-container">
+			<button type="button" class="btn btn-light draw-btn">Draw me a card</button>
+		</div>      
+	<div class="card-body d-flex align-items-center justify-content-center">
+			<p class="card-text text-center unselectable">Card text here.</p>
+		  </div>
+		</div>
+	</div>
+<script>
+/* Questions are from the following sites:
+ * https://www.mylemarks.com/store/p664/Ice-Breaker_Conversation_Cards.html
+ * https://standuply.com/ice-breaker-questions
+ */
+	var questions = [ 
+		"What's your favorite thing to eat for dessert?", 
+		"When was the last time you packed for a trip? Where did you go?", 
+		"What's your favorite thing to do outside?" ,
+		"What's your favorite movie? What do you like about it?",
+		"Share all about your pet. If you don't have one, what animal would you want as a pet?",
+		"You can fly anywhere in the world. Where are you going?",
+		"What is the wierdest thing in your workspace?",
+		"Tell us 3 things you always carry in you bagpack/pocket (other then keys, wallet and phone).",
+		"What would you be working if you weren't working what you're working now?",
+		"If you could have any superpower, what it would be?",
+		"What was your favorite book as a kid?",
+		"What was your favorite singer/band as a kid?",
+		"What is your favorite singer/music band?",
+		"What is your favorite TV series? Why?",
+		"What is your favorite sport/sport player?",
+		"What is the hidden meaning behind your name? Why were you given the name?",
+		"Tell us 3 random facts about yourself!",
+		"What's the worst dish you have ever made?",
+		"Are you a planner or spontaneous?",
+		"If you could only meet one person from history, who would it be?",
+		"If you could travel back in time where would you go?",
+		"Have you ever met someone famous in person?",
+		"Do you have collections of things?",
+		"What was your best cartoon as a child?",
+		"What was the first concert you went to?",
+		"When you were a kid, what did you want to be when you grew up?",
+		"What is your favorite board game? Why?",
+		"What was your favorite subject in school? Why?",
+		"Languages you speak. Languages you wish you could speak.",
+		"Tell us a strange word in your Language. Try to explain it.",
+		"Tell us an interesting fact about your country."
+	];
+	
+	
+	$(document).ready(function(){
+		var shuffledQuestions = createShuffledCopy(questions);
+		$("button").click(function(){
+			if (shuffledQuestions.length === 0) {
+				 $(".card-text").text("Game over!");
+				 $(".card-text").css("color", "red");
+				 $(".draw-btn").attr("disabled", "");
+			} else {
+				$(".card-text").text(shuffledQuestions.pop());
+			}
+		});
+	});
+	
+	function createShuffledCopy(array) {
+		let result = [];
+		array.forEach(q => result.push(q));
+		let currentIndex = result.length,  randomIndex;
+
+		// While there remain elements to shuffle.
+		while (currentIndex != 0) {
+
+		// Pick a remaining element.
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex--;
+
+		// And swap it with the current element.
+		[result[currentIndex], result[randomIndex]] = [
+		  result[randomIndex], result[currentIndex]];
+		}
+
+		return result;
+	}
+
+</script>
+
+</body>
+</html>
